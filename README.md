@@ -1,5 +1,9 @@
 # Bi²: Phase-Aware Binary Mask in Bispectral Domain for Single-Channel Speech Enhancement
 
+## Listening Examples
+
+Audio samples comparing Bi² with baseline methods are available at: https://siarheibarysenka.github.io/bi-sqrd/
+
 ## Usage
 
 ```matlab
