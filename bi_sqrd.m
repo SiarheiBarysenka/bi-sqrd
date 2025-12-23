@@ -25,11 +25,11 @@ function result = bi_sqrd(y, p)
 %                                      See STFT_GetGain function for
 %                                      possible cases.
 %          p.p_H0_Theta2            :  null hypothesis probability for 
-%                                      diagonal slice bi-phase smoothing 
+%                                      diagonal slice of bi-phase
 %                                      (typically 0.6)
 %          p.p_H0_Theta3            :  null hypothesis probability for 
-%                                      next-to-diagonal slice bi-phase 
-%                                      smoothing (typically 0.75)
+%                                      next-to-diagonal slice of bi-phase 
+%                                      (typically 0.75)
 %
 %   Output variables:
 %                  
