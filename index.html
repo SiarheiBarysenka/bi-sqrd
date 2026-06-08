@@ -60,7 +60,8 @@
         }
 
         .grid {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(4, 300px);
             gap: 1rem;
             justify-content: center;
             overflow-x: auto;
@@ -70,7 +71,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex-shrink: 0;
+        }
+
+        .cell.empty {
+            visibility: hidden;
         }
 
         .cell h3 {
@@ -103,8 +107,11 @@
 
         @media (max-width: 768px) {
             .grid {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: 300px;
+            }
+
+            .cell.empty {
+                display: none;
             }
         }
     </style>
@@ -113,281 +120,502 @@
     <h1>Bi²: Phase-Aware Binary Mask in Bispectral Domain for Single-Channel Speech Enhancement</h1>
     <p class="subtitle">Siarhei Y. Barysenka, Pejman Mowlaee</p>
 
-    <!-- Factory Noise 0 dB -->
+    <!-- Living Room 2.5 dB -->
     <section class="condition">
-        <h2>Factory Noise, SNR = 0 dB</h2>
+        <h2>Living Room, SNR = 2.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/factory1_0db_sx107/sx107_factory1_0dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/factory1_0db_sx107/sx107_factory1_0dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/factory1_0db_sx107/sx107_factory1_0dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/factory1_0db_sx107/sx107_factory1_0dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_0db_sx107/sx107_factory1_0dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/factory1_0db_sx107/sx107_factory1_0dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/factory1_0db_sx107/sx107_factory1_0dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/living_room_2.5db_p232_246/p232_246_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Factory Noise 5 dB -->
+    <!-- Living Room 7.5 dB -->
     <section class="condition">
-        <h2>Factory Noise, SNR = 5 dB</h2>
+        <h2>Living Room, SNR = 7.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/factory1_5db_sx58/sx58_factory1_5dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/factory1_5db_sx58/sx58_factory1_5dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/factory1_5db_sx58/sx58_factory1_5dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/factory1_5db_sx58/sx58_factory1_5dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_5db_sx58/sx58_factory1_5dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/factory1_5db_sx58/sx58_factory1_5dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/factory1_5db_sx58/sx58_factory1_5dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/living_room_7.5db_p257_093/p257_093_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Factory Noise 10 dB -->
+    <!-- Office 2.5 dB -->
     <section class="condition">
-        <h2>Factory Noise, SNR = 10 dB</h2>
+        <h2>Office, SNR = 2.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/factory1_10db_sx7/sx7_factory1_10dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/factory1_10db_sx7/sx7_factory1_10dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/factory1_10db_sx7/sx7_factory1_10dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/factory1_10db_sx7/sx7_factory1_10dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/factory1_10db_sx7/sx7_factory1_10dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/factory1_10db_sx7/sx7_factory1_10dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/factory1_10db_sx7/sx7_factory1_10dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/office_2.5db_p257_259/p257_259_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Babble Noise 0 dB -->
+    <!-- Office 7.5 dB -->
     <section class="condition">
-        <h2>Babble Noise, SNR = 0 dB</h2>
+        <h2>Office, SNR = 7.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/babble_16k_0db_sx212/sx212_babble_16k_0dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/office_7.5db_p257_117/p257_117_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Babble Noise 5 dB -->
+    <!-- Cafe 2.5 dB -->
     <section class="condition">
-        <h2>Babble Noise, SNR = 5 dB</h2>
+        <h2>Cafe, SNR = 2.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/babble_16k_5db_si1447/si1447_babble_16k_5dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/cafe_2.5db_p257_130/p257_130_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Babble Noise 10 dB -->
+    <!-- Cafe 7.5 dB -->
     <section class="condition">
-        <h2>Babble Noise, SNR = 10 dB</h2>
+        <h2>Cafe, SNR = 7.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/babble_16k_10db_si880/si880_babble_16k_10dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/cafe_7.5db_p257_290/p257_290_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Modulated Pink Noise 0 dB -->
+    <!-- Public Square 2.5 dB -->
     <section class="condition">
-        <h2>Modulated Pink Noise, SNR = 0 dB</h2>
+        <h2>Public Square, SNR = 2.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/NoisePinkMod_0db_sx122/sx122_NoisePinkMod_0dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/public_square_2.5db_p257_143/p257_143_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Modulated Pink Noise 5 dB -->
+    <!-- Public Square 7.5 dB -->
     <section class="condition">
-        <h2>Modulated Pink Noise, SNR = 5 dB</h2>
+        <h2>Public Square, SNR = 7.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/NoisePinkMod_5db_sa1/sa1_NoisePinkMod_5dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/public_square_7.5db_p257_382/p257_382_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
 
-    <!-- Modulated Pink Noise 10 dB -->
+    <!-- Bus 2.5 dB -->
     <section class="condition">
-        <h2>Modulated Pink Noise, SNR = 10 dB</h2>
+        <h2>Bus, SNR = 2.5 dB</h2>
         <div class="grid">
             <div class="cell">
-                <h3>Noisy Speech</h3>
-                <img class="img-light" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_noisy_light.jpg" alt="Noisy Speech spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_noisy_dark.jpg" alt="Noisy Speech spectrogram">
-                <audio controls src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_noisy.wav"></audio>
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_noisy.wav"></audio>
             </div>
             <div class="cell">
-                <h3>L.K. (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_blind_light.jpg" alt="L.K. Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_blind_dark.jpg" alt="L.K. Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_blind.wav"></audio>
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_bi_sqrd.wav"></audio>
             </div>
             <div class="cell">
-                <h3>Bi² (Blind)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_bi_sqrd_light.jpg" alt="Bi² Blind spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_bi_sqrd_dark.jpg" alt="Bi² Blind spectrogram">
-                <audio controls src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_bi_sqrd.wav"></audio>
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_dtln_blind.wav"></audio>
             </div>
             <div class="cell">
                 <h3>L.K. (Oracle)</h3>
-                <img class="img-light" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_oracle_light.jpg" alt="L.K. Oracle spectrogram">
-                <img class="img-dark" src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_oracle_dark.jpg" alt="L.K. Oracle spectrogram">
-                <audio controls src="assets/NoisePinkMod_10db_sx158/sx158_NoisePinkMod_10dB_lk_oracle.wav"></audio>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/bus_2.5db_p257_004/p257_004_voicebank_demand_clean.wav"></audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bus 7.5 dB -->
+    <section class="condition">
+        <h2>Bus, SNR = 7.5 dB</h2>
+        <div class="grid">
+            <div class="cell">
+                <h3>Noisy</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_noisy_light.jpg" alt="Noisy speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_noisy_dark.jpg" alt="Noisy speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_noisy.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Bi²</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_bi_sqrd_light.jpg" alt="Bi² enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_bi_sqrd_dark.jpg" alt="Bi² enhanced speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_bi_sqrd.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>L.K.</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_blind_light.jpg" alt="L.K. enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_blind_dark.jpg" alt="L.K. enhanced speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_blind.wav"></audio>
+            </div>
+            <div class="cell empty" aria-hidden="true"></div>
+            <div class="cell">
+                <h3>ijMAP</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_ijmap_blind_light.jpg" alt="ijMAP enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_ijmap_blind_dark.jpg" alt="ijMAP enhanced speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_ijmap_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>DTLN</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_dtln_blind_light.jpg" alt="DTLN enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_dtln_blind_dark.jpg" alt="DTLN enhanced speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_dtln_blind.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>L.K. (Oracle)</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_oracle_light.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_oracle_dark.jpg" alt="L.K. oracle enhanced speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_lk_oracle.wav"></audio>
+            </div>
+            <div class="cell">
+                <h3>Clean</h3>
+                <img class="img-light" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_clean_light.jpg" alt="Clean speech spectrogram">
+                <img class="img-dark" src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_clean_dark.jpg" alt="Clean speech spectrogram">
+                <audio controls src="assets/bus_7.5db_p232_381/p232_381_voicebank_demand_clean.wav"></audio>
             </div>
         </div>
     </section>
