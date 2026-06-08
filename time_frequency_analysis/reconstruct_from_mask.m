@@ -47,8 +47,5 @@ function [xhat, Xhat] = reconstruct_from_mask(mask, S0, S, Nfft, anaWin, tinc, f
     
     % Inverse STFT
     xhat = overlapadd(irfft(Xhat, Nfft, 2), anaWin, tinc * fs);
-    
-    % Apply gain normalization
-    xhat = gain_normalization(xhat, y);
 end
 
