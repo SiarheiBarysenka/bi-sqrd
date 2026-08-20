@@ -1,4 +1,4 @@
-# Bi²: Phase-Aware Binary Mask in Bispectral Domain for Single-Channel Speech Enhancement
+# Bi²: Real-Time Single-Channel Speech Enhancement in Bispectral Domain Using Two Slices of Bispectral Phase
 
 ## Listening Examples
 
